@@ -1,3 +1,5 @@
+// 1. Suspense importeren uit React
+import { Suspense } from 'react';
 import Link from "next/link";
 import KostenCalculator from "@/components/KostenCalculator"; 
 
@@ -12,16 +14,15 @@ export default function KostenPage() {
         Bereken hieronder uw persoonlijke voordeel.
       </p>
 
-      {/* DE CALCULATOR */}
       <section className="mb-12 shadow-xl rounded-xl overflow-hidden">
-        <KostenCalculator />
+        {/* 2. De Calculator "inpakken" in een Suspense component */}
+        <Suspense fallback={<div className="p-8 text-center">Calculator wordt geladen...</div>}>
+          <KostenCalculator />
+        </Suspense>
       </section>
 
-      {/* EXTRA INFO */}
       <section className="bg-gray-100 p-8 rounded-xl">
         <h2 className="text-2xl font-bold mb-4">Waar hangt de besparing van af?</h2>
-        
-        {/* HIER DE AANGEPASTE TEKST: */}
         <ul className="list-disc pl-5 space-y-3 text-gray-700">
             <li>
                 <strong>Brandstofkosten:</strong> Thuis laden (ca. €0,22/kWh) is aanzienlijk goedkoper dan benzine (ca. €2,05/L). Dit is uw grootste besparing.
