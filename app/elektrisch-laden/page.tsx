@@ -40,7 +40,7 @@ export default function LandingPage() {
                 <Home className="w-8 h-8 text-blue-600" />
             </div>
             <h3 className="text-2xl font-bold text-gray-800 group-hover:text-blue-600 mb-2">Thuis Laden</h3>
-            <p className="text-gray-600">De goedkoopste en makkelijkste manier. Alles over wallboxen.</p>
+            <p className="text-gray-600">De goedkoopste en makkelijkste manier. Voor een eigen oprit óf via de stoep in de stad (VPA).</p>
             <span className="mt-6 inline-block font-bold text-blue-600">Lees meer &rarr;</span>
           </Link>
 
@@ -51,7 +51,7 @@ export default function LandingPage() {
                 <Fuel className="w-8 h-8 text-green-600" />
             </div>
             <h3 className="text-2xl font-bold text-gray-800 group-hover:text-green-600 mb-2">Publiek Laden</h3>
-            <p className="text-gray-600">Laden in de stad, bij de supermarkt of als u geen eigen oprit heeft.</p>
+            <p className="text-gray-600">Laden in de stad? Vind de beste methode voor Amsterdam, Noord-Holland, Utrecht en daarbuiten.</p>
             <span className="mt-6 inline-block font-bold text-green-600">Lees meer &rarr;</span>
           </Link>
 
@@ -62,7 +62,7 @@ export default function LandingPage() {
                 <Zap className="w-8 h-8 text-yellow-600" />
             </div>
             <h3 className="text-2xl font-bold text-gray-800 group-hover:text-yellow-600 mb-2">Snelladen & Reizen</h3>
-            <p className="text-gray-600">Zorgeloos op vakantie en lange afstanden. Inclusief reis-calculator.</p>
+            <p className="text-gray-600">Zorgeloos onderweg. Alles over snelladen langs de snelweg en slimme vakantieplanning.</p>
             <span className="mt-6 inline-block font-bold text-yellow-600">Lees meer &rarr;</span>
           </Link>
 

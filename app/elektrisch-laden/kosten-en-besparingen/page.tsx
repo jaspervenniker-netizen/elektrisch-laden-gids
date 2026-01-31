@@ -21,20 +21,23 @@ export default function KostenPage() {
         </Suspense>
       </section>
 
-      <section className="bg-gray-100 p-8 rounded-xl">
-        <h2 className="text-2xl font-bold mb-4">Waar hangt de besparing van af?</h2>
-        <ul className="list-disc pl-5 space-y-3 text-gray-700">
-            <li>
-                <strong>Brandstofkosten:</strong> Thuis laden (ca. €0,22/kWh) is aanzienlijk goedkoper dan benzine (ca. €2,05/L). Dit is uw grootste besparing.
-            </li>
-            <li>
-                <strong>Onderhoud:</strong> Een elektrische auto heeft veel minder bewegende delen. Geen olie verversen, geen nieuwe uitlaat, en remmen slijten minder snel door regeneratief remmen.
-            </li>
-            <li>
-                <strong>Wegenbelasting (MRB):</strong> Ook in 2026 blijft elektrisch rijden fiscaal aantrekkelijk. U betaalt slechts <strong>70% van het tarief</strong> dat voor een vergelijkbare benzineauto geldt. Deze korting van 30% compenseert het hogere gewicht van de accu.
-            </li>
-        </ul>
-      </section>
+<section className="bg-gray-100 p-8 rounded-xl">
+    <h2 className="text-2xl font-bold mb-4">Waar hangt de besparing van af?</h2>
+    <ul className="list-disc pl-5 space-y-3 text-gray-700">
+        <li>
+            <strong>Brandstofkosten:</strong> Thuis laden (ca. €0,22/kWh) is aanzienlijk goedkoper dan benzine (ca. €2,05/L). Dit is uw grootste besparing.
+        </li>
+        <li>
+            <strong>ERE-vergoeding (Cashback):</strong> Een nieuwe inkomstenbron vanaf 2026. Door de CO₂-besparing van uw laadsessies te verkopen, ontvangt u circa <strong>€0,08 per kWh</strong> retour. Dit verlaagt uw effectieve stroomprijs direct. <em>(Vereist een MID-meter in de laadpaal)</em>.
+        </li>
+        <li>
+            <strong>Onderhoud:</strong> Een elektrische auto heeft veel minder bewegende delen. Geen olie verversen, geen nieuwe uitlaat, en de remmen slijten minder snel door regeneratief remmen.
+        </li>
+        <li>
+            <strong>Wegenbelasting (MRB):</strong> Ook in 2026 blijft elektrisch rijden fiscaal aantrekkelijk. U betaalt slechts <strong>70% van het tarief</strong> dat voor een vergelijkbare benzineauto geldt. Deze korting van 30% compenseert het hogere gewicht van de accu.
+        </li>
+    </ul>
+</section>
     </main>
   );
 }
