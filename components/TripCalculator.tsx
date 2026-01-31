@@ -82,14 +82,11 @@ export default function TripCalculator() {
             <div>
                 <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4 block">Elektrisch Voertuig</label>
                 
-                {/* --- FIX: FLEXBOX WRAPPER --- */}
                 <div className="flex items-center bg-gray-50 border border-gray-100 rounded-2xl px-4 focus-within:ring-2 focus-within:ring-blue-100 transition-all">
-                    {/* Icon is separate and stays on the left */}
                     <div className="text-blue-600 shrink-0">
                         <Car size={20} />
                     </div>
                     
-                    {/* Select box starts AFTER the icon. No padding-left issues possible now. */}
                     <select 
                         value={selectedCarId} 
                         onChange={(e) => setSelectedCarId(e.target.value)} 
@@ -98,14 +95,13 @@ export default function TripCalculator() {
                         {carDatabase.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
                     </select>
 
-                    {/* Custom Arrow because appearance-none removes it */}
                     <div className="text-gray-400 shrink-0 pointer-events-none">
                         <ChevronRight size={16} className="rotate-90" />
                     </div>
                 </div>
                 
                 <p className="text-[11px] text-gray-400 italic mt-3 px-2">
-                  Verbruikscijfers o.b.v. realistische snelwegdata (<a href="https://ev-database.org/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">EV Database</a>).
+                    Indicatief verbruik o.b.v. snelwegdata (<a href="https://ev-database.org/" target="_blank" rel="noopener noreferrer" className="underline hover:text-blue-600">EV Database</a>). Werkelijkheid varieert door snelheid en belading.
                 </p>
 
                 <div className="flex justify-between items-end mt-4 mb-2">
@@ -141,7 +137,7 @@ export default function TripCalculator() {
                         <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Laadstops</div>
                     </div>
                     <div>
-                        <div className="text-5xl md:text-6xl font-black mb-1 tracking-tighter">
+                        <div className="text-4xl md:text-6xl font-black mb-1 tracking-tighter">
                             {Math.floor(results.driveTimeMin/60)}u {Math.round(results.driveTimeMin%60)}m
                         </div>
                         <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-1">
@@ -149,7 +145,7 @@ export default function TripCalculator() {
                         </div>
                     </div>
                     <div>
-                        <div className="text-5xl md:text-6xl font-black mb-1 text-blue-300 tracking-tighter">
+                        <div className="text-4xl md:text-6xl font-black mb-1 text-blue-300 tracking-tighter">
                             {Math.floor(results.chargingTimeMin/60)}u {Math.round(results.chargingTimeMin%60)}m
                         </div>
                         <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-1">
@@ -172,20 +168,81 @@ export default function TripCalculator() {
                     </div>
                 </div>
 
-                <div className="pt-8 border-t border-dashed border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-                    <div>
-                        <span className="text-[11px] font-black text-slate-500 uppercase block mb-1 tracking-widest">Uw Vakantie Voordeel</span>
-                        <div className="text-7xl md:text-8xl font-black text-white tracking-tighter">€ {results.savings.toFixed(0)}</div>
+                {/* --- GEOPTIMALISEERD VOORDEEL OVERZICHT --- */}
+                <div className="pt-8 border-t border-dashed border-white/10 mt-auto">
+                    <span className="text-[11px] font-black text-slate-500 uppercase block mb-2 tracking-widest">
+                        Uw Vakantie Voordeel
+                    </span>
+                    
+                    <div className="flex items-center justify-between gap-4">
+                        <div className="flex items-center gap-4">
+                            <div className="text-6xl sm:text-7xl md:text-8xl font-black text-emerald-400 tracking-tighter">
+                                € {results.savings.toFixed(0)}
+                            </div>
+                            
+                            <button 
+                                onClick={() => setShowDetails(!showDetails)} 
+                                className={`p-2.5 rounded-full transition-all shrink-0 ${
+                                    showDetails 
+                                    ? 'bg-blue-600 text-white shadow-[0_0_15px_rgba(37,99,235,0.4)]' 
+                                    : 'bg-white/5 hover:bg-white/10 text-slate-400'
+                                }`}
+                            >
+                                <Info size={22} />
+                            </button>
+                        </div>
+
+                        <div className="hidden sm:block text-right">
+                            <p className="text-[10px] text-slate-500 leading-tight italic">
+                                Op basis van<br />{distance} km
+                            </p>
+                        </div>
                     </div>
-                    <div className="flex flex-col items-end gap-2">
-                        <button onClick={() => setShowDetails(!showDetails)} className="p-3 bg-white/5 hover:bg-white/10 rounded-full text-slate-400 transition-all"><Info size={24} /></button>
-                        <p className="text-[10px] text-slate-500 text-right">Op basis van {distance} km</p>
-                    </div>
+                    
+                    <p className="sm:hidden text-[9px] text-slate-600 mt-2 italic">
+                        Op basis van een reis van {distance} km.
+                    </p>
                 </div>
 
                 {showDetails && (
-                    <div className="mt-6 p-5 bg-white/5 rounded-2xl text-[10px] text-slate-400 space-y-2 leading-relaxed border border-white/10 animate-in fade-in slide-in-from-top-2">
-                        <p><strong>• Berekening:</strong> Vertrek met volle accu thuis (€{HOME_RATE.toFixed(2)}/kWh). Onderweg snelladen met abonnement (gem. €{SUB_FAST_RATE.toFixed(2)}/kWh). Inclusief €{SUB_FEE.toFixed(2)} abonnementskosten en 10% laadverlies.</p>
+                    <div className="mt-6 p-5 bg-white/5 rounded-2xl text-[10px] text-slate-400 space-y-4 leading-relaxed border border-white/10 animate-in fade-in slide-in-from-top-2">
+                        <div>
+                            <p className="text-white font-bold mb-1 uppercase tracking-wider text-[9px]">💰 Kosten & Efficiëntie</p>
+                            <p>
+                                Berekening o.b.v. vertrek met 100% accu (€{HOME_RATE.toFixed(2)}/kWh). 
+                                Onderweg snelladen met abonnement (gem. €{SUB_FAST_RATE.toFixed(2)}/kWh). 
+                                Inclusief €{SUB_FEE.toFixed(2)} abonnementskosten en 10% laadverlies.
+                            </p>
+                        </div>
+
+                        <div>
+                            <p className="text-white font-bold mb-1 uppercase tracking-wider text-[9px]">🌨️ Weer, Snelheid & Nuance</p>
+                            <p>
+                                De data gaat uit van een constante snelheid van <strong>110 km/u</strong>. 
+                                <br /><br />
+                                • <strong>Zomer:</strong> 'Best-case' scenario bij 23°C zonder airco.
+                                <br />
+                                • <strong>Winter:</strong> 'Worst-case' scenario bij -10°C inclusief verwarming. 
+                                <br /><br />
+                                De werkelijkheid ligt vaak tussen deze uitersten in.
+                            </p>
+                        </div>
+
+                        <div>
+                            <p className="text-white font-bold mb-1 uppercase tracking-wider text-[9px]">🔌 Laadstrategie (10-80% regel)</p>
+                            <p>
+                                De calculator rekent met stops van 10% naar 80%. Boven de 80% gaat het laden bij de meeste auto's 
+                                twee keer zo langzaam. Het is sneller om vaker en korter te laden.
+                            </p>
+                        </div>
+
+                        <div>
+                            <p className="text-white font-bold mb-1 uppercase tracking-wider text-[9px]">🔋 Accugezondheid (SOH)</p>
+                            <p>
+                                De SOH-schuif simuleert degradatie. Een occasion met 90% SOH heeft een 10% kleinere 'brandstoftank' 
+                                dan een nieuwe auto. Dit heeft geen invloed op de efficientie maar wel (kleine) invloed op laadtijd.
+                            </p>
+                        </div>
                     </div>
                 )}
             </div>

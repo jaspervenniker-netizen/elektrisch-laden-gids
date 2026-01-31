@@ -74,7 +74,7 @@ export default function EreUitlegPage() {
               De markt voor ERE-certificaten is nieuw en de prijzen kunnen sterk schommelen. De waarde is afhankelijk van vraag en aanbod. Wees dus kritisch op partijen die een hoge, vaste vergoeding garanderen over meerdere jaren.
             </p>
             <p className="font-bold text-amber-900 text-sm italic">
-              Ons advies: Bind u nog niet vast aan lange contracten. U kunt laadsessies van een heel kalenderjaar tot 1 maart van het jaar daarop indienen.
+              Ons advies: Bind u nog niet vast aan lange contracten. U kunt laadsessies van een heel kalenderjaar tot 1 maart van het jaar daarop achteraf ingedient worden.
             </p>
           </div>
         </div>
@@ -123,7 +123,7 @@ export default function EreUitlegPage() {
             </div>
             
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
-              <h4 className="text-lg font-bold mb-4">Check uw laadpaal</h4>
+              <h4 className="text-lg font-bold mb-4">Laadpane met MID-meter</h4>
               <p className="text-xs text-slate-400 mb-4">
                 Dit is een indicatieve lijst met modellen die vaak een MID-meter hebben. Controleer altijd de specificaties van uw eigen paal.
               </p>

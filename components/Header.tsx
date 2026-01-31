@@ -1,26 +1,46 @@
 "use client";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Zap, Fuel, Calculator, ChevronLeft } from 'lucide-react';
+import { Home, Zap, Fuel, Calculator } from 'lucide-react';
 
 export default function Header() {
   const pathname = usePathname();
-
-  // We tonen de header NIET op de hoofdpagina (hub)
-  if (pathname === '/elektrisch-laden') return null;
 
   return (
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 py-3 px-4">
       <div className="max-w-6xl mx-auto flex justify-between items-center">
         
-        {/* LOGO / TERUG NAAR HUB */}
-        <Link href="/elektrisch-laden" className="flex items-center gap-2 text-gray-900 font-bold hover:text-blue-600 transition-colors">
-          <div className="bg-gray-900 text-white p-1.5 rounded-lg">
-            <Zap size={16} fill="currentColor" />
-          </div>
-          <span className="hidden sm:inline text-sm tracking-tight uppercase">EV Startpakket</span>
-          <span className="sm:hidden text-sm">Home</span>
-        </Link>
+        {/* LOGO SECTIE */}
+        <div className="flex items-center gap-3">
+          <Link href="/elektrisch-laden" className="flex items-center gap-2 group">
+            <div className="bg-gray-900 text-white p-1.5 rounded-lg group-hover:bg-blue-600 transition-colors">
+              <Zap size={16} fill="currentColor" />
+            </div>
+            <span className="text-sm font-black tracking-tight uppercase text-gray-900">
+                EV Startpakket
+            </span>
+          </Link>
+
+          {/* DEALER LINK (Hartje + WeLovo in zwart) */}
+          <a 
+            href="https://www.welovo.nl/aanbod?brandstof=E" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="flex items-center gap-2 border-l border-gray-200 pl-3 ml-1 hover:opacity-70 transition-opacity group/dealer"
+          >
+             <span className="hidden sm:inline text-[11px] font-semibold text-gray-400 uppercase tracking-wide mt-0.5">
+      Door
+   </span>
+             <img 
+                src="/hartje.jpg" 
+                alt="WeLovo Logo" 
+                className="h-4 w-4 object-contain rounded-sm" 
+             />
+             <span className="text-xs font-bold text-black tracking-tight group-hover/dealer:text-blue-600 transition-colors">
+                WeLovo
+             </span>
+          </a>
+        </div>
 
         {/* SNELLE NAVIGATIE (Iconen) */}
         <div className="flex gap-1 md:gap-4">

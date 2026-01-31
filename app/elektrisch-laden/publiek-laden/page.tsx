@@ -183,11 +183,11 @@ const AmsterdamContent = () => (
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                    <span className="font-bold text-gray-900">Charge Assist App (Beste Keus)</span>
+                    <span className="font-bold text-gray-900">Charge Assist App</span>
                     <a href="https://www.chargeassist.app/" target="_blank" rel="noopener noreferrer" className="text-blue-500"><ExternalLink size={14}/></a>
                 </div>
                 <span className="text-sm text-gray-500 block mt-1 leading-snug">
-                  Dit is de officiële app voor Equans-palen. Hiermee start en betaalt u direct de laadsessie tegen het laagste tarief, zonder enige opslag.
+                  Dit is de officiële app voor Equans-palen in amsterdam. Hiermee start en betaalt u direct de laadsessie tegen het laagste tarief, zonder enige opslag.
                 </span>
               </div>
             </li>
@@ -298,7 +298,7 @@ const RestOfNLContent = () => (
                   <QrCode size={24} />
               </div>
               <div>
-                <span className="font-bold text-gray-900">Scan de QR-code (Meest effectief)</span>
+                <span className="font-bold text-gray-900">Scan de QR-code</span>
                 <span className="text-sm text-gray-500 block mt-1 leading-snug">
                   Bijna elke moderne laadpaal heeft een QR-sticker. Scannen leidt u naar een betaalpagina waar u het kale tarief betaalt met uw telefoon. Geen pas nodig!
                 </span>
@@ -367,7 +367,7 @@ const RestOfNLContent = () => (
     <div className="bg-slate-50 rounded-3xl p-8 mb-12 border border-slate-200">
       <h2 className="text-2xl font-bold text-gray-900 mb-2">Het Diverse Laadlandschap</h2>
       <p className="text-sm text-gray-600 mb-6 max-w-3xl">
-        Buiten de grote concessies is de markt versnipperd. Prijzen variëren doorgaans tussen de €0,40 en €0,65 per kWh. Zonder de juiste strategie betaalt u vaak onnodig veel door verborgen opslagen van tussenpartijen.
+        Buiten de grote concessies is de markt versnipperd. Prijzen variëren doorgaans tussen de €0,40 en €0,65 per kWh.
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="bg-green-50 p-5 rounded-2xl border border-green-200">
@@ -458,7 +458,7 @@ export default function PubliekLadenPage() {
             <div>
                 <h4 className="text-[13px] font-bold text-gray-900 leading-tight">Semi-publieke palen</h4>
                 <p className="text-[12px] text-gray-500 mt-0.5 leading-snug">
-                    Hier gelden geen maximumprijzen. Tarieven kunnen vrij bepaald worden en sterk afwijken. Gebruik een app om vooraf de kosten te controleren.
+                    Op privéterrein (hotels, garages) bepaalt de eigenaar de prijs. Dit kan onverwacht duur zijn. Bekijk je laad-app of de QR-code op de paal om verrassingen te voorkomen.
                 </p>
             </div>
         </div>

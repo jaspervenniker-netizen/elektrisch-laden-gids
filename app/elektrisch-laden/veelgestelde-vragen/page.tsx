@@ -59,10 +59,7 @@ export default function FAQPage() {
 
       </div>
       
-      <div className="mt-12 text-center bg-gray-50 p-6 rounded-xl">
-        <p className="font-bold text-gray-800">Staat uw vraag er niet bij?</p>
-        <button className="mt-2 text-blue-600 underline hover:text-blue-800">Neem contact met ons op</button>
-      </div>
+     
 
     </main>
   );
