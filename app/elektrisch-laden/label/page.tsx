@@ -19,43 +19,34 @@ export default function LabelPage() {
     carDatabase.find(c => c.id === selectedId) || carDatabase[0]
   , [selectedId]);
 
-  // MATH LOGIC (Aligned with your calculator)
+  // MATH LOGIC
   const metrics = useMemo(() => {
-    // Constants from your calculator
     const kms = 15000;
     const gasPrice = 2.05;
-    const gasConsumption = 7.5; // L/100km
-    const kwhPrice = 0.22; // Default home price
-    const lossFactor = 1.15; // 15% charging loss
+    const gasConsumption = 7.5; 
+    const kwhPrice = 0.22; 
+    const lossFactor = 1.15; 
     const sohFactor = soh / 100;
 
-    // Helper: 70/30 weighting (Mild/Cold) 
-    // and converting Wh/km to kWh/100km (divide by 10)
     const getWeightedKwh = (mild: number, cold: number) => {
       const weighted = (mild * 0.70) + (cold * 0.30);
       return weighted / 10; 
     };
 
-    // 1. Calculate weighted consumption for each profile
     const consStad = getWeightedKwh(car.cityMild, car.cityCold);
     const consMix = getWeightedKwh(car.combMild, car.combCold);
     const consHigh = getWeightedKwh(car.highMild, car.highCold);
 
-    // 2. Calculate Ranges (kms)
-    // Formula: (Battery / Consumption per km) * SOH
     const stadRange = (car.batteryUsable / (consStad / 100)) * sohFactor;
     const mixRange = (car.batteryUsable / (consMix / 100)) * sohFactor;
     const highRange = (car.batteryUsable / (consHigh / 100)) * sohFactor;
 
-    // 3. Financial Savings
     const annualCostGas = (kms / 100) * gasConsumption * gasPrice;
-    
-    // EV Cost includes the lossFactor (1.15) just like your calculator
     const realEvCons = consMix * lossFactor;
     const annualCostEV = (kms / 100) * realEvCons * kwhPrice;
     
     const fuelSavings = Math.round(annualCostGas - annualCostEV);
-    const maintenanceSavings = 411; // BOVAG 2024 Average
+    const maintenanceSavings = 411; 
 
     return { 
       stad: Math.round(stadRange), 
@@ -73,11 +64,50 @@ export default function LabelPage() {
       
       <style dangerouslySetInnerHTML={{ __html: `
         @media print {
-          @page { size: A4; margin: 0; }
-          body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-          .no-print { display: none !important; }
-          .print-container { padding: 0 !important; margin: 0 !important; background: none !important; display: block !important; }
-          .print-sheet { width: 210mm; height: 297mm; box-shadow: none !important; margin: 0 !important; }
+          @page { 
+            size: A4; 
+            margin: 0; 
+          }
+          html, body {
+            height: auto !important;
+            overflow: visible !important;
+          }
+          /* Hide everything by default */
+          body * {
+            visibility: hidden;
+          }
+          /* Show only the print sheet and its contents */
+          .print-sheet, .print-sheet * {
+            visibility: visible;
+          }
+          /* Reset layout for print */
+          .fixed.inset-0 { 
+            position: absolute !important; 
+            display: block !important; 
+            background: white !important;
+          }
+          .no-print { 
+            display: none !important; 
+          }
+          .print-container { 
+            padding: 0 !important; 
+            margin: 0 !important; 
+            background: white !important; 
+            display: block !important;
+            overflow: visible !important;
+          }
+          .print-sheet { 
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 210mm; 
+            height: 297mm; 
+            box-shadow: none !important; 
+            margin: 0 !important; 
+            border: none !important;
+            -webkit-print-color-adjust: exact !important; 
+            print-color-adjust: exact !important; 
+          }
         }
       `}} />
 
@@ -90,7 +120,6 @@ export default function LabelPage() {
         </div>
         
         <div className="flex-1 overflow-y-auto p-6 space-y-6">
-          {/* Model Selection */}
           <div>
             <label className="block text-[10px] font-black text-slate-400 uppercase mb-2 tracking-widest">Auto Model</label>
             <select 
@@ -102,7 +131,6 @@ export default function LabelPage() {
             </select>
           </div>
 
-          {/* Year Input */}
           <div>
             <label className="block text-[10px] font-black text-slate-400 uppercase mb-2 tracking-widest">Bouwjaar</label>
             <div className="relative">
@@ -116,7 +144,6 @@ export default function LabelPage() {
             </div>
           </div>
 
-          {/* SOH Slider */}
           <div className="bg-slate-900/50 p-5 rounded-2xl border border-slate-700">
             <label className="block text-[10px] font-black text-green-400 uppercase mb-2 tracking-widest">Batterij Conditie (SOH): {soh}%</label>
             <input 
@@ -130,7 +157,7 @@ export default function LabelPage() {
         </div>
       </div>
 
-      {/* PREVIEW */}
+      {/* PREVIEW CONTAINER */}
       <div className="print-container flex-1 bg-slate-200 p-10 overflow-y-auto flex justify-center h-full">
         <div className="print-sheet w-[210mm] min-h-[297mm] h-auto bg-white shadow-2xl flex flex-col relative shrink-0">
           
@@ -151,7 +178,7 @@ export default function LabelPage() {
                  <p className="text-[10px] text-slate-400 uppercase font-black mb-1 tracking-wider">Batterij Conditie (SOH)</p>
                  <div className="flex items-center gap-3">
                    <p className="text-[44px] font-black text-slate-900 leading-none">{soh}%</p>
-                   <div className="text-[8px] text-green-600 font-black border border-green-100 px-2 py-1 rounded uppercase">Geverifieerd</div>
+                   <div className="text-[8px] text-green-600 font-black border border-green-100 px-2 py-1 rounded uppercase"></div>
                  </div>
                </div>
              </div>
