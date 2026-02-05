@@ -126,7 +126,7 @@ export default function ThuisLadenPage() {
                         <h2 className="text-xl font-bold text-gray-900 mb-1">Geld verdienen</h2>
                         <p className="text-sm text-gray-500">Verzilver uw CO₂-besparing.</p>
                     </div>
-                    <div className="bg-emerald-100 text-emerald-700 text-[10px] font-black px-2 py-1 rounded-md uppercase tracking-tighter">Nieuw 2025</div>
+                    <div className="bg-emerald-100 text-emerald-700 text-[10px] font-black px-2 py-1 rounded-md uppercase tracking-tighter">Nieuw 2026</div>
                 </div>
             </div>
 
@@ -170,7 +170,7 @@ export default function ThuisLadenPage() {
     </h3>
     
     <p className="text-slate-600 mb-10 leading-relaxed text-lg max-w-3xl">
-      Woont u in een gemeente als <strong>Haarlem</strong>, <strong>Haarlemmermeer</strong> of <strong>Zaandam</strong>? Dan hoeft u vaak geen eigen oprit te hebben om toch vanuit uw eigen meterkast te laden. Via een goedgekeurde rubberen mat of een officiële kabelgoottegel mag u de laadkabel veilig over de stoep leggen.
+      Woont u in een gemeente als <strong>Haarlem</strong>, <strong>heemskerk</strong>, <strong>beverwijk</strong>, <strong>Haarlemmermeer</strong> of <strong>Zaandam</strong>? Dan hoeft u vaak geen eigen oprit te hebben om toch vanuit uw eigen meterkast te laden. Via een goedgekeurde rubberen mat of een officiële kabelgoottegel mag u dan de laadkabel veilig over de stoep leggen.
     </p>
 
     {/* Voordelen kaarten */}

@@ -31,7 +31,7 @@ export default function KostenPage() {
             <strong>ERE-vergoeding (Cashback):</strong> Een nieuwe inkomstenbron vanaf 2026. Door de CO₂-besparing van uw laadsessies te verkopen, ontvangt u circa <strong>€0,08 per kWh</strong> retour. Dit verlaagt uw effectieve stroomprijs direct. <em>(Vereist een MID-meter in de laadpaal)</em>.
         </li>
         <li>
-            <strong>Onderhoud:</strong> Een elektrische auto heeft veel minder bewegende delen. Geen olie verversen, geen nieuwe uitlaat, en de remmen slijten minder snel door regeneratief remmen.
+            <strong>Onderhoud:</strong> Een EV heeft slechts ca. 20 bewegende delen (t.o.v. 2.000+ bij benzine). Geen oliebeurten of distributieriemen nodig. Dit maakt onderhoud gemiddeld 60% goedkoper. Gemiddeld <strong>411 euro</strong> per jaar (Bron: BOVAG 2024).
         </li>
         <li>
             <strong>Wegenbelasting (MRB):</strong> Ook in 2026 blijft elektrisch rijden fiscaal aantrekkelijk. U betaalt slechts <strong>70% van het tarief</strong> dat voor een vergelijkbare benzineauto geldt. Deze korting van 30% compenseert het hogere gewicht van de accu.

@@ -54,13 +54,13 @@ export default function EreUitlegPage() {
       {/* Hero Section */}
       <div className="mb-16">
         <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 border border-blue-100">
-          <CalendarClock className="w-4 h-4" /> Nieuwe regeling vanaf 2025
+          <CalendarClock className="w-4 h-4" /> Nieuwe regeling vanaf 2026
         </div>
         <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight italic">
           Geld verdienen met uw laadpaal: <span className="text-emerald-600">ERE-certificaten</span>
         </h1>
         <p className="text-xl text-gray-600 leading-relaxed max-w-3xl">
-          Vanaf 1 januari 2025 kunt u de CO₂-besparing van uw laadsessies verkopen aan brandstofleveranciers. Dit levert een aantrekkelijke vergoeding op via het systeem van <strong>Emissiereductie-eenheden (ERE)</strong>.
+          Vanaf 1 januari 2026 kunt u de CO₂-besparing van uw laadsessies verkopen aan brandstofleveranciers. Dit levert een aantrekkelijke vergoeding op via het systeem van <strong>Emissiereductie-eenheden (ERE)</strong>.
         </p>
       </div>
 

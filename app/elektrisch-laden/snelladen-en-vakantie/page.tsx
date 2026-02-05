@@ -23,7 +23,7 @@ export default function VakantiePlannerPage() {
 
       {/* Header */}
       <div className="mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-3 tracking-tight">Vakantieplanner</h1>
+        <h1 className="text-4xl font-bold text-gray-900 mb-3 tracking-tight">Reisplanner</h1>
         <p className="text-lg text-gray-500 max-w-2xl leading-relaxed">
             Ontdek hoe ver u komt met een elektrische occasion en bereken direct uw voordeel ten opzichte van brandstof.
         </p>
@@ -102,7 +102,7 @@ export default function VakantiePlannerPage() {
                     <p className="text-gray-500 text-sm mb-6 leading-relaxed">
                         Gebruik het IONITY POWER abonnement om toegang te krijgen tot het scherpste snelwegtarief (350kW laders) in heel Europa.
                     </p>
-                    <div className="text-[11px] font-black text-slate-900 uppercase tracking-widest mb-6">Van €0,79 naar €0,39 /kWh</div>
+                    <div className="text-[11px] font-black text-slate-900 uppercase tracking-widest mb-6">Van €0,79/Kwh naar €0,39/KWh</div>
                 </div>
                 <a href="https://www.ionity.eu/nl" target="_blank" rel="noopener noreferrer" 
                 className="inline-flex items-center gap-2 text-sm font-bold text-gray-900 hover:text-blue-600 transition-colors">

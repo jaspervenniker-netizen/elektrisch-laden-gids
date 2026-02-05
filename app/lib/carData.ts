@@ -3,88 +3,95 @@
 export interface CarData {
   id: string;
   name: string;
-  batteryUsable: number;    // kWh
-  
-  // Gebruikt voor de Algemene Besparingscalculator (Gecombineerd)
-  summer: number;           // Gecombineerd - Zomer (uit EV-DB)
-  winter: number;           // Gecombineerd - Winter (uit EV-DB)
-  
-  // Gebruikt voor de Vakantieplanner (Snelweg 110-120 km/u)
-  highway: number;          // Snelweg - Zomer (uit EV-DB)
-  highwayWinter: number;    // Snelweg - Winter (uit EV-DB)
-  
-  chargeTime10to80: number; // Minuten
+  batteryUsable: number; // in kWh
+  // Consumption in Wh/km (from the 'Real Energy Consumption' table)
+  cityMild: number;      // City - Mild Weather
+  cityCold: number;      // City - Cold Weather
+  combMild: number;      // Combined - Mild Weather
+  combCold: number;      // Combined - Cold Weather
+  highMild: number;      // Highway - Mild Weather
+  highCold: number;      // Highway - Cold Weather
+  chargeTime10to80: number; // minutes
+  avgChargePower: number;   // Average kW
 }
 
 export const carDatabase: CarData[] = [
-  { 
-    id: "volvo_xc40_p8", 
-    name: "Volvo XC40 Recharge (P8 AWD)", 
-    batteryUsable: 75.0, 
-    summer: 20.0,         // Gecombineerd Zomer
-    winter: 26.3,         // Gecombineerd Winter
-    highway: 25.4,        // Snelweg Zomer (Exact uit screenshot)
-    highwayWinter: 31.9,  // Snelweg Winter (Exact uit screenshot)
-    chargeTime10to80: 32 
+  {
+    id: "volvo-xc40-p8-awd",
+    name: "Volvo XC40 Recharge P8 AWD",
+    batteryUsable: 75.0,
+    cityMild: 153,
+    cityCold: 217,
+    combMild: 200,
+    combCold: 263,
+    highMild: 254,
+    highCold: 319,
+    chargeTime10to80: 31,
+    avgChargePower: 108, 
   },
-  { 
-    id: "tesla_y_lr", 
-    name: "Tesla Model Y (Long Range)", 
-    batteryUsable: 75.0, 
-    summer: 14.8, 
-    winter: 19.3, 
-    highway: 18.1, 
-    highwayWinter: 22.8, 
-    chargeTime10to80: 22 
+  {
+    id: "volvo-xc40-recharge-single-motor",
+    name: "Volvo XC40 Recharge Single Motor (231 PK)",
+    batteryUsable: 67.0,
+    cityMild: 134,
+    cityCold: 195,
+    combMild: 174,
+    combCold: 232,
+    highMild: 219,
+    highCold: 277,
+    chargeTime10to80: 32,
+    avgChargePower: 110,
   },
-  { 
-    id: "tesla_3_sr", 
-    name: "Tesla Model 3 (Standard Range)", 
-    batteryUsable: 57.5, 
-    summer: 12.8, 
-    winter: 17.5, 
-    highway: 15.6, 
-    highwayWinter: 19.8, 
-    chargeTime10to80: 25 
+  {
+    id: "tesla-model-s-75d",
+    name: "Tesla Model S 75D (Legacy)",
+    batteryUsable: 72.5,
+    cityMild: 134,
+    cityCold: 196,
+    combMild: 167,
+    combCold: 227,
+    highMild: 207,
+    highCold: 264,
+    chargeTime10to80: 40,
+    avgChargePower: 80,
   },
-  { 
-    id: "volvo_ex30_er", 
-    name: "Volvo EX30 Single Motor ER", 
-    batteryUsable: 64.0, 
-    summer: 15.6, 
-    winter: 20.8, 
-    highway: 19.4, 
-    highwayWinter: 25.1, 
-    chargeTime10to80: 26 
+  {
+    id: "tesla-model-3-sr-plus-2019",
+    name: "Tesla Model 3 Standard Range Plus",
+    batteryUsable: 49.0,
+    cityMild: 104,
+    cityCold: 161,
+    combMild: 132,
+    combCold: 185,
+    highMild: 163,
+    highCold: 213,
+    chargeTime10to80: 21,
+    avgChargePower: 105,
   },
-  { 
-    id: "vw_id4_pro", 
-    name: "Volkswagen ID.4 Pro", 
-    batteryUsable: 77.0, 
-    summer: 16.4, 
-    winter: 21.3, 
-    highway: 20.6, 
-    highwayWinter: 26.5, 
-    chargeTime10to80: 29 
+  {
+    id: "polestar-2-lr-dm",
+    name: "Polestar 2 (Long Range Dual Motor)",
+    batteryUsable: 75.0,
+    cityMild: 133,
+    cityCold: 195,
+    combMild: 169,
+    combCold: 227,
+    highMild: 208,
+    highCold: 268,
+    chargeTime10to80: 31,
+    avgChargePower: 108,
   },
-  { 
-    id: "polestar_2_lrdm", 
-    name: "Polestar 2 (LR Dual Motor)", 
-    batteryUsable: 75.0, 
-    summer: 16.8, 
-    winter: 22.4, 
-    highway: 20.7, 
-    highwayWinter: 26.7, 
-    chargeTime10to80: 28 
-  },
-  { 
-    id: "tesla_s_75d", 
-    name: "Tesla Model S 75D", 
-    batteryUsable: 72.5, 
-    summer: 16.8, 
-    winter: 22.5, 
-    highway: 21.4, 
-    highwayWinter: 27.2, 
-    chargeTime10to80: 40 
-  },
-];
+  {
+    id: "fiat-500e-42",
+    name: "Fiat 500e (42 kWh)",
+    batteryUsable: 37.3,
+    cityMild: 105,
+    cityCold: 162,
+    combMild: 138,
+    combCold: 191,
+    highMild: 173,
+    highCold: 226,
+    chargeTime10to80: 25,
+    avgChargePower: 67,
+  }
+]
