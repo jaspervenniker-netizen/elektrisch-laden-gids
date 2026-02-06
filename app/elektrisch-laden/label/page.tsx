@@ -1,14 +1,18 @@
 "use client";
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef } from 'react'; // Added useRef
 import { 
   BatteryCharging, Wallet, MapPin, Printer, 
-  Globe, Leaf, Scale, Zap, Wrench, Heart, Calendar 
+  Globe, Leaf, Scale, Zap, Wrench, Heart, Calendar,
+  Download // Added Download icon
 } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 import { carDatabase } from '@/app/lib/carData';
+import { toPng } from 'html-to-image'; // Requirement: npm install html-to-image
 
 export default function LabelPage() {
+  const printRef = useRef(null); // Reference for the image export
+
   // Inputs
   const [selectedId, setSelectedId] = useState(carDatabase[0].id);
   const [soh, setSoh] = useState(92); 
@@ -59,6 +63,24 @@ export default function LabelPage() {
 
   const dynamicUrl = `https://evstartpakket.nl/elektrisch-laden/kosten-en-besparingen?model=${car.id}`;
 
+  // Image Export Logic
+  const downloadImage = async () => {
+    if (printRef.current === null) return;
+    try {
+      const dataUrl = await toPng(printRef.current, { 
+        cacheBust: true,
+        pixelRatio: 2, // Higher quality
+        backgroundColor: '#ffffff'
+      });
+      const link = document.createElement('a');
+      link.download = `Label-${car.name.replace(/\s+/g, '-').toLowerCase()}.png`;
+      link.href = dataUrl;
+      link.click();
+    } catch (err) {
+      console.error('Oops, something went wrong!', err);
+    }
+  };
+
   return (
     <div className="fixed inset-0 z-[9999] flex flex-row bg-slate-900 overflow-hidden font-sans text-slate-900">
       
@@ -72,15 +94,12 @@ export default function LabelPage() {
             height: auto !important;
             overflow: visible !important;
           }
-          /* Hide everything by default */
           body * {
             visibility: hidden;
           }
-          /* Show only the print sheet and its contents */
           .print-sheet, .print-sheet * {
             visibility: visible;
           }
-          /* Reset layout for print */
           .fixed.inset-0 { 
             position: absolute !important; 
             display: block !important; 
@@ -113,9 +132,13 @@ export default function LabelPage() {
 
       {/* SIDEBAR */}
       <div className="no-print w-80 bg-slate-800 text-white flex flex-col border-r border-slate-700 shrink-0">
-        <div className="p-6 border-b border-slate-700">
+        <div className="p-6 border-b border-slate-700 space-y-3">
           <button onClick={() => window.print()} className="w-full bg-green-500 hover:bg-green-400 text-slate-900 font-black py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg uppercase tracking-tight">
             <Printer size={18} /> Print Label
+          </button>
+          {/* NEW PHOTO BUTTON */}
+          <button onClick={downloadImage} className="w-full bg-slate-700 hover:bg-slate-600 text-white font-black py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg uppercase tracking-tight transition-colors">
+            <Download size={18} /> Foto Opslaan
           </button>
         </div>
         
@@ -159,7 +182,8 @@ export default function LabelPage() {
 
       {/* PREVIEW CONTAINER */}
       <div className="print-container flex-1 bg-slate-200 p-10 overflow-y-auto flex justify-center h-full">
-        <div className="print-sheet w-[210mm] min-h-[297mm] h-auto bg-white shadow-2xl flex flex-col relative shrink-0">
+        {/* Added ref={printRef} here */}
+        <div ref={printRef} className="print-sheet w-[210mm] min-h-[297mm] h-auto bg-white shadow-2xl flex flex-col relative shrink-0">
           
           <div className="print-header bg-[#131826] text-white p-10 pb-12">
              <div className="flex justify-between items-center mb-6">
