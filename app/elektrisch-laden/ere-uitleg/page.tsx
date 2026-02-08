@@ -7,6 +7,7 @@ import {
   Scale, CalendarClock, Gauge, Search, CheckCircle2, ArrowUpRight
 } from "lucide-react";
 
+import { track } from "@vercel/analytics/react";
 // De data van de laadpalen
 const MID_LAADPALEN = [
   { merk: "ABL", modellen: ["emH3"] },
@@ -239,9 +240,10 @@ export default function EreUitlegPage() {
   </h4>
   <div className="flex flex-col sm:flex-row gap-4 justify-center">
     <a 
-      href="https://www.anwb.nl/auto/elektrisch-rijden/laadpalen/ere-certificaten" 
-      target="_blank" 
-      rel="noopener noreferrer"
+  href="https://www.anwb.nl/auto/elektrisch-rijden/laadpalen/ere-certificaten" 
+  target="_blank" 
+  rel="noopener noreferrer"
+  onClick={() => track('External_Resource_Click', { site: 'ANWB', topic: 'ERE' })}
       className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors border border-gray-200 group"
     >
       <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm font-bold text-blue-600">
@@ -256,9 +258,10 @@ export default function EreUitlegPage() {
     </a>
 
     <a 
-      href="https://www.evrijders.nl/nieuws/ere-certificaten-hoe-werken-ze" 
-      target="_blank" 
-      rel="noopener noreferrer"
+  href="https://www.evrijders.nl/dossier-vpa" 
+  target="_blank" 
+  rel="noopener noreferrer"
+  onClick={() => track('External_Resource_Click', { site: 'EVrijders', topic: 'VPA' })}
       className="flex items-center gap-3 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors border border-gray-200 group"
     >
       <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm font-bold text-emerald-600">

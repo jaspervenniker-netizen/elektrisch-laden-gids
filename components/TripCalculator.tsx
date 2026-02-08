@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react"; // <--- ADDED useEffect
 import { Car, Sun, CloudSun, Snowflake, TrendingUp, Zap, Info, ChevronRight, Clock, ShieldCheck, Server } from "lucide-react";
 import { carDatabase } from "@/app/lib/carData";
+import { track } from '@vercel/analytics/react';
+
 
 // --- CONSTANTEN ---
 const HOME_RATE = 0.23;
@@ -75,7 +77,7 @@ export default function TripCalculator() {
                    appliedSubFee;
     
     const costGas = (distance / 100) * gasConsumption * gasPrice;
-
+    
     return {
         costEv, costGas, savings: costGas - costEv,
         stops, chargingTimeMin, driveTimeMin, totalTimeMin,

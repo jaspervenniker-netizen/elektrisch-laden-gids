@@ -5,7 +5,7 @@ import {
   Sun, Zap, Info, BatteryCharging, CheckCircle2, 
   ChevronRight, Smartphone, Coins, BadgeCheck, ArrowUpRight, MapPin, Lightbulb
 } from "lucide-react";
-
+import { track } from '@vercel/analytics/react';
 export default function ThuisLadenPage() {
   const [chargingProfile, setChargingProfile] = useState<'fixed' | 'dynamic' | 'solar'>('dynamic');
   const [batteryMode, setBatteryMode] = useState<'daily' | 'trip'>('daily');
@@ -48,10 +48,36 @@ export default function ThuisLadenPage() {
             </div>
 
             <div className="flex p-1 bg-gray-100 rounded-lg mb-6">
-                <button onClick={() => setChargingProfile('fixed')} className={`flex-1 py-2 px-1 text-[11px] sm:text-xs font-bold rounded-md transition-all ${chargingProfile === 'fixed' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500'}`}>VAST</button>
-                <button onClick={() => setChargingProfile('dynamic')} className={`flex-1 py-2 px-1 text-[11px] sm:text-xs font-bold rounded-md transition-all ${chargingProfile === 'dynamic' ? 'bg-white text-blue-700 shadow-sm' : 'text-gray-500'}`}>DYNAMISCH</button>
-                <button onClick={() => setChargingProfile('solar')} className={`flex-1 py-2 px-1 text-[11px] sm:text-xs font-bold rounded-md transition-all ${chargingProfile === 'solar' ? 'bg-white text-yellow-700 shadow-sm' : 'text-gray-500'}`}>ZON</button>
-            </div>
+    <button 
+        onClick={() => {
+            setChargingProfile('fixed');
+            track('Home_Profile_Selected', { profile: 'Vast/Variabel' });
+        }} 
+        className={`flex-1 py-2 px-1 text-[11px] sm:text-xs font-bold rounded-md transition-all ${chargingProfile === 'fixed' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500'}`}
+    >
+        VAST
+    </button>
+    
+    <button 
+        onClick={() => {
+            setChargingProfile('dynamic');
+            track('Home_Profile_Selected', { profile: 'Dynamisch' });
+        }} 
+        className={`flex-1 py-2 px-1 text-[11px] sm:text-xs font-bold rounded-md transition-all ${chargingProfile === 'dynamic' ? 'bg-white text-blue-700 shadow-sm' : 'text-gray-500'}`}
+    >
+        DYNAMISCH
+    </button>
+    
+    <button 
+        onClick={() => {
+            setChargingProfile('solar');
+            track('Home_Profile_Selected', { profile: 'Zonnepanelen' });
+        }} 
+        className={`flex-1 py-2 px-1 text-[11px] sm:text-xs font-bold rounded-md transition-all ${chargingProfile === 'solar' ? 'bg-white text-yellow-700 shadow-sm' : 'text-gray-500'}`}
+    >
+        ZON
+    </button>
+</div>
 
             <div className="flex justify-between items-center mb-4">
                 <div>
@@ -215,6 +241,7 @@ export default function ThuisLadenPage() {
         href="https://www.evrijders.nl/dossier-vpa" 
         target="_blank" 
         rel="noopener noreferrer"
+  onClick={() => track('External_Resource_Click', { site: 'EVrijders', topic: 'VPA' })}
         className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-800 transition-colors group"
       >
         Naar het VPA-overzicht 

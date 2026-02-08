@@ -1,8 +1,12 @@
 // 1. Suspense importeren uit React
+import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import Link from "next/link";
 import KostenCalculator from "@/components/KostenCalculator"; 
-
+export const metadata: Metadata = {
+  title: 'Besparing Elektrische Auto Berekenen (Benzine vs. EV)',
+  description: 'Vergelijk de kosten van uw huidige benzineauto met een elektrische occasion. Inclusief onderhoudsvoordeel en stroomprijzen.',
+};
 export default function KostenPage() {
   return (
     <main className="max-w-4xl mx-auto px-4 py-12">

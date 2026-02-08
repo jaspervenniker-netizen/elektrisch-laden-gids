@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from 'next/navigation';
 import Link from "next/link";
+import { track } from '@vercel/analytics/react';
 // Wrench toegevoegd aan imports
 import { Leaf, Scale, Zap, Home, Fuel, Sparkles, MapPin, Info, Wrench } from "lucide-react"; 
 
@@ -40,7 +41,7 @@ export default function KostenCalculator() {
   const laadType = searchParams.get('laadtype');
   const scenario = searchParams.get('scenario');
   const modelParam = searchParams.get('model');
-
+    
   // Handle Car Model Parameter
   if (modelParam) {
     const carExists = carList.some(c => c.id === modelParam);
@@ -115,6 +116,24 @@ export default function KostenCalculator() {
   const annualCostGas = (kms / 100) * pricePer100kmGas;
   const annualSavings = annualCostGas - annualCostEV;
 
+  // --- ADDED TRACKING START ---
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (annualSavings > 0) {
+        track('Calculator_Used', { 
+          besparing: Math.round(annualSavings),
+          auto_model: selectedCar,
+          rijprofiel: profile,
+          laad_type: activeScenario,
+          kilometers: kms
+        });
+      }
+    }, 3000); 
+
+    return () => clearTimeout(timer);
+  }, [annualSavings, selectedCar, profile, activeScenario, kms]);
+  // --- ADDED TRACKING END ---
+  
   return (
     <div className="bg-white p-6 md:p-8 rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
       <h2 className="text-3xl font-bold mb-6 text-gray-800">Bereken Uw Brandstof Voordeel</h2>
@@ -179,13 +198,10 @@ export default function KostenCalculator() {
             <div className="border-t pt-4">
                 <label className="block text-sm font-bold text-gray-700 mb-3">Hoe gaat u laden?</label>
                 <div className="grid grid-cols-2 gap-3 mb-2">
-    {/* THUIS BUTTON */}
     <button onClick={() => setPreset('home')} className={`flex flex-col items-center justify-center p-3 rounded-xl border-2 transition-all ${activeScenario === 'home' ? 'border-blue-500 bg-blue-50 text-blue-700 shadow-sm' : 'border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-300'}`}>
         <Home size={20} className="mb-1" />
         <span className="text-xs font-bold">Thuis</span>
     </button>
-
-    {/* PUBLIEK BUTTON (Updated) */}
     <button onClick={() => setPreset('public')} className={`flex flex-col items-center justify-center p-3 rounded-xl border-2 transition-all ${activeScenario === 'public' ? 'border-blue-500 bg-blue-50 text-blue-700 shadow-sm' : 'border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-300'}`}>
         <Fuel size={20} className="mb-1" />
         <span className="text-xs font-bold">Publiek</span>
@@ -236,7 +252,6 @@ export default function KostenCalculator() {
                     <span className="text-lg opacity-80">/ jaar</span>
                 </div>
 
-                {/* KOSTEN PER 100 KM */}
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 mb-4 border border-white/10">
                     <h4 className="text-xs font-bold text-white/90 uppercase mb-3 border-b border-white/20 pb-2">Kosten per 100 km</h4>
                     <div className="flex justify-between items-center mb-2">
@@ -253,20 +268,19 @@ export default function KostenCalculator() {
                     </div>
                 </div>
 
-                {/* NIEUW: EXTRA ONDERHOUDSVOORDEEL (Wordt niet opgeteld bij totaal) */}
                 <div className="bg-lime-500/10 backdrop-blur-sm rounded-lg p-4 mb-6 border border-lime-400/20">
-    <div className="flex items-center gap-2 mb-2">
-        <Wrench size={14} className="text-lime-400" />
-        <h4 className="text-xs font-bold text-lime-400 uppercase tracking-wider">Extra Besparing: Onderhoud</h4>
-    </div>
-    <div className="flex justify-between items-baseline">
-        <span className="text-4xl font-extrabold text-white">€{maintenanceSavings.toFixed(0)}</span>
-        <span className="text-xs text-lime-100/80 italic">Jaarlijks gemiddelde*</span>
-    </div>
-    <p className="text-[10px] text-lime-100/70 mt-2 leading-tight">
-        *Onderzoek toont aan dat EV-onderhoud 60% goedkoper is door het ontbreken van olie, filters en een uitlaat. (Bron: BOVAG 2024).
-    </p>
-</div>
+                    <div className="flex items-center gap-2 mb-2">
+                        <Wrench size={14} className="text-lime-400" />
+                        <h4 className="text-xs font-bold text-lime-400 uppercase tracking-wider">Extra Besparing: Onderhoud</h4>
+                    </div>
+                    <div className="flex justify-between items-baseline">
+                        <span className="text-4xl font-extrabold text-white">€{maintenanceSavings.toFixed(0)}</span>
+                        <span className="text-xs text-lime-100/80 italic">Jaarlijks gemiddelde*</span>
+                    </div>
+                    <p className="text-[10px] text-lime-100/70 mt-2 leading-tight">
+                        *Onderzoek toont aan dat EV-onderhoud 60% goedkoper is door het ontbreken van olie, filters en een uitlaat. (Bron: BOVAG 2024).
+                    </p>
+                </div>
             </div>
             
             <div className="space-y-3 text-sm">

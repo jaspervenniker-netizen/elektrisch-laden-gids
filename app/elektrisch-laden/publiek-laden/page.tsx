@@ -2,6 +2,7 @@
 import { useState } from "react"; // Import useState
 import Link from "next/link";
 import { ChevronRight, PiggyBank, CreditCard, QrCode, Smartphone, BatteryCharging, Info, AlertTriangle, Plus, Equal, Minus, ExternalLink, CheckCircle2, Lightbulb, ArrowUpRight, MapPin } from "lucide-react";
+import { track } from '@vercel/analytics/react';
 
 // --- CONTENT COMPONENTS FOR EACH REGION ---
 
@@ -80,7 +81,11 @@ const MRAContent = () => (
               <div>
                 <div className="flex items-center gap-2">
                   <span className="font-bold text-gray-900">Tap Electric</span>
-                  <a href="https://www.tapelectric.app/nl/" target="_blank" rel="noopener noreferrer" className="text-blue-500"><ExternalLink size={14} /></a>
+                  <a 
+  href="https://www.tapelectric.app/nl/" 
+  target="_blank" 
+  rel="noopener noreferrer"
+  onClick={() => track('App_Recommendation_Click', { app: 'Tap Electric' })} className="text-blue-500"><ExternalLink size={14} /></a>
                 </div>
                 <span className="text-sm text-gray-500 block mt-1 leading-snug">U betaalt de kale marktprijs plus een vast maandbedrag of sessie-fee. Geen onzichtbare marges op uw stroomverbruik.</span>
               </div>
@@ -184,7 +189,11 @@ const AmsterdamContent = () => (
               <div>
                 <div className="flex items-center gap-2">
                     <span className="font-bold text-gray-900">Charge Assist App</span>
-                    <a href="https://www.chargeassist.app/" target="_blank" rel="noopener noreferrer" className="text-blue-500"><ExternalLink size={14}/></a>
+                    <a 
+  href="https://www.chargeassist.app/" 
+  target="_blank" 
+  rel="noopener noreferrer"
+  onClick={() => track('App_Recommendation_Click', { app: 'Charge Assist' })} className="text-blue-500"><ExternalLink size={14}/></a>
                 </div>
                 <span className="text-sm text-gray-500 block mt-1 leading-snug">
                   Dit is de officiële app voor Equans-palen in amsterdam. Hiermee start en betaalt u direct de laadsessie tegen het laagste tarief, zonder enige opslag.
@@ -488,23 +497,34 @@ export default function PubliekLadenPage() {
         </div>
         <div className="flex flex-wrap gap-2 p-1.5 bg-gray-100 rounded-full">
             <button 
-                onClick={() => setActiveRegion('mra')}
-                className={`flex-1 px-4 py-2.5 text-sm font-semibold rounded-full transition-all duration-300 ${activeRegion === 'mra' ? 'bg-white text-gray-900 shadow-md' : 'text-gray-600 hover:bg-gray-200'}`}
-            >
-                Noord-Holland, Flevoland & Utrecht
-            </button>
-            <button 
-                onClick={() => setActiveRegion('amsterdam')}
-                className={`flex-1 px-4 py-2.5 text-sm font-semibold rounded-full transition-all duration-300 ${activeRegion === 'amsterdam' ? 'bg-white text-gray-900 shadow-md' : 'text-gray-600 hover:bg-gray-200'}`}
-            >
-                Amsterdam
-            </button>
-            <button 
-                onClick={() => setActiveRegion('rest')}
-                className={`flex-1 px-4 py-2.5 text-sm font-semibold rounded-full transition-all duration-300 ${activeRegion === 'rest' ? 'bg-white text-gray-900 shadow-md' : 'text-gray-600 hover:bg-gray-200'}`}
-            >
-                Rest van Nederland
-            </button>
+    onClick={() => {
+        setActiveRegion('mra');
+        track('Region_Selected', { region: 'Noord-Holland/Flevoland/Utrecht' });
+    }}
+    className={`flex-1 px-4 py-2.5 text-sm font-semibold rounded-full transition-all duration-300 ${activeRegion === 'mra' ? 'bg-white text-gray-900 shadow-md' : 'text-gray-600 hover:bg-gray-200'}`}
+>
+    Noord-Holland, Flevoland & Utrecht
+</button>
+
+<button 
+    onClick={() => {
+        setActiveRegion('amsterdam');
+        track('Region_Selected', { region: 'Amsterdam' });
+    }}
+    className={`flex-1 px-4 py-2.5 text-sm font-semibold rounded-full transition-all duration-300 ${activeRegion === 'amsterdam' ? 'bg-white text-gray-900 shadow-md' : 'text-gray-600 hover:bg-gray-200'}`}
+>
+    Amsterdam
+</button>
+
+<button 
+    onClick={() => {
+        setActiveRegion('rest');
+        track('Region_Selected', { region: 'Rest van Nederland' });
+    }}
+    className={`flex-1 px-4 py-2.5 text-sm font-semibold rounded-full transition-all duration-300 ${activeRegion === 'rest' ? 'bg-white text-gray-900 shadow-md' : 'text-gray-600 hover:bg-gray-200'}`}
+>
+    Rest van Nederland
+</button>
         </div>
       </div>
 

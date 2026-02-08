@@ -1,3 +1,4 @@
+"use client";
 import { Suspense } from 'react';
 import Link from "next/link";
 import { 
@@ -12,7 +13,8 @@ import {
   Battery 
 } from "lucide-react";
 import TripCalculator from "@/components/TripCalculator"; 
-
+import TrackingLink from "@/components/Trackinglink";
+import { track } from '@vercel/analytics/react';
 export default function VakantiePlannerPage() {
   return (
     <main className="max-w-6xl mx-auto px-4 py-12">
@@ -88,10 +90,15 @@ export default function VakantiePlannerPage() {
                     </p>
                     <div className="text-[11px] font-black text-red-600 uppercase tracking-widest mb-6">Dynamische prijs: €0,35 - €0,45 /kWh</div>
                 </div>
-                <a href="https://www.tesla.com/nl_nl/support/charging/supercharging-other-evs" target="_blank" rel="noopener noreferrer" 
-                className="inline-flex items-center gap-2 text-sm font-bold text-gray-900 hover:text-red-600 transition-colors">
-                    Tesla App <ExternalLink size={14} />
-                </a>
+                <TrackingLink
+  href="https://www.tesla.com/nl_nl/support/charging/supercharging-other-evs"
+  target="_blank"
+  rel="noopener noreferrer"
+  onClick={() => track('Charging_Network_Click', { network: 'Tesla' })}
+  className="inline-flex items-center gap-2 text-sm font-bold text-gray-900 hover:text-red-600 transition-colors"
+>
+  Tesla App <ExternalLink size={14} />
+</TrackingLink>
             </div>
 
             {/* IONITY CARD */}
@@ -104,10 +111,15 @@ export default function VakantiePlannerPage() {
                     </p>
                     <div className="text-[11px] font-black text-slate-900 uppercase tracking-widest mb-6">Van €0,79/Kwh naar €0,39/KWh</div>
                 </div>
-                <a href="https://www.ionity.eu/nl" target="_blank" rel="noopener noreferrer" 
-                className="inline-flex items-center gap-2 text-sm font-bold text-gray-900 hover:text-blue-600 transition-colors">
-                    IONITY <ExternalLink size={14} />
-                </a>
+                <TrackingLink
+  href="https://www.ionity.eu/nl"
+  target="_blank"
+  rel="noopener noreferrer"
+  onClick={() => track('Charging_Network_Click', { network: 'IONITY' })}
+  className="inline-flex items-center gap-2 text-sm font-bold text-gray-900 hover:text-blue-600 transition-colors"
+>
+  IONITY <ExternalLink size={14} />
+</TrackingLink>
             </div>
 
             {/* LOCAL CHARGERS CARD */}
@@ -120,10 +132,15 @@ export default function VakantiePlannerPage() {
                     </p>
                     <div className="text-[11px] font-black text-emerald-600 uppercase tracking-widest mb-6">Prijs: ± €0,35 /kWh</div>
                 </div>
-                <a href="https://iecharge.io/locations/" target="_blank" rel="noopener noreferrer" 
-                className="inline-flex items-center gap-2 text-sm font-bold text-emerald-900 hover:text-emerald-600 transition-colors">
-                    IECharge locaties <ExternalLink size={14} />
-                </a>
+                <TrackingLink
+  href="https://iecharge.io/locations/"
+  target="_blank"
+  rel="noopener noreferrer"
+  onClick={() => track('Charging_Network_Click', { network: 'IECharge', region: 'France' })}
+  className="inline-flex items-center gap-2 text-sm font-bold text-emerald-900 hover:text-emerald-600 transition-colors"
+>
+  IECharge locaties <ExternalLink size={14} />
+</TrackingLink>
             </div>
         </div>
       </section>
@@ -143,9 +160,14 @@ export default function VakantiePlannerPage() {
                     <span className="flex items-center gap-1.5 bg-white/10 px-4 py-2 rounded-full"><Clock size={14}/> Live verkeer</span>
                 </div>
             </div>
-            <a href="https://abetterrouteplanner.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center w-fit bg-white text-blue-700 px-10 py-5 rounded-2xl font-black hover:bg-blue-50 transition-all shadow-xl gap-2 group text-lg shrink-0">
-                Open Routeplanner <ExternalLink size={20} className="group-hover:scale-110 transition-transform" />
-            </a>
+            <TrackingLink
+  href="https://abetterrouteplanner.com/"
+  target="_blank"
+  onClick={() => track('External_Link_Click', { target: 'ABRP' })}
+  className="inline-flex items-center w-fit bg-white text-blue-700 px-10 py-5 rounded-2xl font-black hover:bg-blue-50 transition-all shadow-xl gap-2 group text-lg shrink-0"
+>
+  Open Routeplanner <ExternalLink size={20} className="group-hover:scale-110 transition-transform" />
+</TrackingLink>
         </div>
       </section>
     </main>
