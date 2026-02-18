@@ -1,10 +1,13 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Thuis Laden: Slimme Meters, Zonnepanelen & VPA (Laden op de stoep)',
-  description: 'Optimaliseer uw laadkosten met dynamische tarieven en zonnestroom. Uitleg over de VPA-regeling voor laden zonder oprit.',
+  title: 'Thuis Laden: Zonnepanelen, Slimme Meters & Laden zonder oprit',
+  description: 'Optimaliseer uw laadkosten thuis met dynamische tarieven en zonnestroom. Alles over de VPA-regeling (laden via de stoep) in uw gemeente.',
+  alternates: {
+    canonical: '/elektrisch-laden/thuis-laden',
+  },
 };
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function ThuisLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }

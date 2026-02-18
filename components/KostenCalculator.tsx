@@ -198,15 +198,31 @@ export default function KostenCalculator() {
             <div className="border-t pt-4">
                 <label className="block text-sm font-bold text-gray-700 mb-3">Hoe gaat u laden?</label>
                 <div className="grid grid-cols-2 gap-3 mb-2">
-    <button onClick={() => setPreset('home')} className={`flex flex-col items-center justify-center p-3 rounded-xl border-2 transition-all ${activeScenario === 'home' ? 'border-blue-500 bg-blue-50 text-blue-700 shadow-sm' : 'border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-300'}`}>
-        <Home size={20} className="mb-1" />
-        <span className="text-xs font-bold">Thuis</span>
-    </button>
-    <button onClick={() => setPreset('public')} className={`flex flex-col items-center justify-center p-3 rounded-xl border-2 transition-all ${activeScenario === 'public' ? 'border-blue-500 bg-blue-50 text-blue-700 shadow-sm' : 'border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-300'}`}>
-        <Fuel size={20} className="mb-1" />
-        <span className="text-xs font-bold">Publiek</span>
-    </button>
+                    <button onClick={() => setPreset('home')} className={`flex flex-col items-center justify-center p-3 rounded-xl border-2 transition-all ${activeScenario === 'home' ? 'border-blue-500 bg-blue-50 text-blue-700 shadow-sm' : 'border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-300'}`}>
+                        <Home size={20} className="mb-1" />
+                        <span className="text-xs font-bold">Thuis</span>
+                    </button>
+                    <button onClick={() => setPreset('public')} className={`flex flex-col items-center justify-center p-3 rounded-xl border-2 transition-all ${activeScenario === 'public' ? 'border-blue-500 bg-blue-50 text-blue-700 shadow-sm' : 'border-gray-100 bg-gray-50 text-gray-500 hover:border-gray-300'}`}>
+                        <Fuel size={20} className="mb-1" />
+                        <span className="text-xs font-bold">Publiek</span>
+                    </button>
+                </div>
+                
+                {/* REIS CALCULATOR LINK */}
+                <div className="mb-4 text-center">
+  <Link 
+    href="/elektrisch-laden/snelladen-en-vakantie"
+    onClick={() => track('Internal_Navigation', { 
+        from: 'Savings_Calculator', 
+        to: 'Trip_Calculator',
+        trigger: 'Distance_Anxiety_Link' 
+    })}
+    className="text-xs text-blue-600 font-bold hover:text-blue-800 transition-all underline underline-offset-4"
+  >
+    Verder van huis? Bekijk onze reis calculator →
+  </Link>
 </div>
+
 
                 {activeScenario === 'home' && (
                 <div className="mb-4 p-3 bg-emerald-50 rounded-lg border border-emerald-100">

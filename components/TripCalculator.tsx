@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react"; // <--- ADDED useEffect
+import { useState, useMemo, useEffect } from "react"; 
 import { Car, Sun, CloudSun, Snowflake, TrendingUp, Zap, Info, ChevronRight, Clock, ShieldCheck, Server } from "lucide-react";
+import Link from "next/link"; // Link import toegevoegd
 import { carDatabase } from "@/app/lib/carData";
 import { track } from '@vercel/analytics/react';
 
@@ -254,6 +255,19 @@ export default function TripCalculator() {
                         <div className="hidden sm:block text-right">
                             <p className="text-[10px] text-slate-500 leading-tight italic">Op basis van<br />{distance.toLocaleString('nl-NL')} km</p>
                         </div>
+                    </div>
+                    
+                    {/* JAARLIJKSE BESPARING LINK */}
+                    <div className="mt-4">
+                      <Link 
+    href="/elektrisch-laden/kosten-en-besparingen"
+    onClick={() => track('Internal_Navigation', { 
+        from: 'Trip_Calculator', 
+        to: 'Savings_Calculator',
+        trigger: 'Post_Result_CTA' 
+    })} className="text-[11px] text-blue-400 font-bold hover:text-blue-300 transition-all underline underline-offset-4 decoration-blue-400/30">
+                        Benieuwd naar uw totale voordeel per jaar? Bereken uw jaarlijkse besparing →
+                      </Link>
                     </div>
                 </div>
 

@@ -12,6 +12,9 @@ const geistSans = Geist({
 // Now Metadata works perfectly because this is a Server Component!
 export const metadata: Metadata = {
   metadataBase: new URL('https://evstartpakket.nl'), // Replace with your real domain later
+  alternates: {
+    canonical: '/', // Vertelt Google: de root is de hoofdversie
+  },
   title: {
     default: 'EV Startpakket | Onafhankelijke Gids voor Elektrisch Laden',
     template: '%s | EV Startpakket'
