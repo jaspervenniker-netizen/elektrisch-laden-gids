@@ -19,7 +19,7 @@ export default function TripCalculator() {
   const [selectedCarId, setSelectedCarId] = useState(carDatabase[0].id);
   const [batteryHealth, setBatteryHealth] = useState(94);
   const [tripType, setTripType] = useState<'summer' | 'mild' | 'winter'>('mild');
-  const [gasPrice, setGasPrice] = useState(2.05);
+  const [gasPrice, setGasPrice] = useState(2.3);
   const [gasConsumption, setGasConsumption] = useState(7.5);
   const [showDetails, setShowDetails] = useState(false);
 

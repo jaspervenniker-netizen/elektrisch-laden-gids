@@ -19,7 +19,7 @@ export default function KostenCalculator() {
   const [profile, setProfile] = useState<'gemiddeld' | 'zuinig' | 'intensief'>('gemiddeld');
   
   const [kwhPrice, setKwhPrice] = useState(0.22);
-  const [gasPrice, setGasPrice] = useState(2.05);
+  const [gasPrice, setGasPrice] = useState(2.3);
   const [lossFactor, setLossFactor] = useState(1.15); 
   const [activeScenario, setActiveScenario] = useState<'home' | 'public'>('home');
   const [includeEre, setIncludeEre] = useState(false);
