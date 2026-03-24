@@ -28,7 +28,7 @@ export default function KostenCalculator() {
   const [selectedCar, setSelectedCar] = useState(defaultCar); 
 
   const [evConsumption, setEvConsumption] = useState(18.25); 
-  const [gasConsumption, setGasConsumption] = useState(7.5); 
+  const [gasConsumption, setGasConsumption] = useState(10); 
 
   const searchParams = useSearchParams();
 
