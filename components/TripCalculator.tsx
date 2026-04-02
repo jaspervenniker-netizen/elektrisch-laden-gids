@@ -78,7 +78,7 @@ export default function TripCalculator() {
                    appliedSubFee;
     
     const costGas = (distance / 100) * gasConsumption * gasPrice;
-    
+
     return {
         costEv, costGas, savings: costGas - costEv,
         stops, chargingTimeMin, driveTimeMin, totalTimeMin,
@@ -87,7 +87,18 @@ export default function TripCalculator() {
         pricingLabel
     };
   }, [distance, selectedCar, batteryHealth, tripType, gasPrice, gasConsumption]);
+    useEffect(() => {
+    const timer = setTimeout(() => {
+      if (distance > 0) {
+        track('Trip_Calculator_Used', { 
+          car_model: selectedCarId, // Prop 1
+          total_km: distance         // Prop 2
+        });
+      }
+    }, 3000); 
 
+    return () => clearTimeout(timer);
+  }, [distance, selectedCarId]);
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 lg:grid-cols-12 bg-white rounded-[3rem] border border-gray-100 shadow-lg overflow-hidden">
@@ -262,10 +273,9 @@ export default function TripCalculator() {
                       <Link 
     href="/elektrisch-laden/kosten-en-besparingen"
     onClick={() => track('Internal_Navigation', { 
-        from: 'Trip_Calculator', 
-        to: 'Savings_Calculator',
-        trigger: 'Post_Result_CTA' 
-    })} className="text-[11px] text-blue-400 font-bold hover:text-blue-300 transition-all underline underline-offset-4 decoration-blue-400/30">
+        path: 'Trip_to_Savings', // Gecombineerd (Prop 1)
+        trigger: 'Post_Result_CTA' // (Prop 2)
+    })}  className="text-[11px] text-blue-400 font-bold hover:text-blue-300 transition-all underline underline-offset-4 decoration-blue-400/30">
                         Benieuwd naar uw totale voordeel per jaar? Bereken uw jaarlijkse besparing →
                       </Link>
                     </div>

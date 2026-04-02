@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { ExternalLink, ShieldCheck, Car } from 'lucide-react';
 import { track } from '@vercel/analytics/react';
+import { usePathname } from 'next/navigation';
 export default function Footer() {
+  const pathname = usePathname();
   return (
     <footer className="bg-gray-50 border-t border-gray-200 pt-12 pb-8 mt-20">
       <div className="max-w-6xl mx-auto px-4">
@@ -25,7 +27,7 @@ export default function Footer() {
         href="https://www.welovo.nl/aanbod?brandstof=E" 
         target="_blank" 
         rel="noopener noreferrer"
-        onClick={() => track('Click_Dealer_Inventory', { location: 'footer' })} // <--- Add this
+        onClick={() => track('Click_Dealer_Inventory', { from_page: 'footer', current_route: pathname })}
         className="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-2 rounded-lg text-sm font-bold hover:bg-blue-700 transition"
       >
         <Car size={16} /> Bekijk onze voorraad <ExternalLink size={14} />

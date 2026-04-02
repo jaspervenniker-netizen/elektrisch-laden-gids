@@ -27,7 +27,11 @@ export default function Header() {
             href="https://www.welovo.nl/aanbod?brandstof=E" 
             target="_blank" 
             rel="noopener noreferrer" 
-            onClick={() => track('Click_Dealer_Inventory', { location: 'header' })}
+            onClick={() => track('Click_Dealer_Inventory', { 
+  from_page: 'header', 
+  current_route: pathname 
+})}
+
             className="flex items-center gap-2 border-l border-gray-200 pl-3 ml-1 hover:opacity-70 transition-opacity group/dealer"
           >
              <span className="hidden sm:inline text-[11px] font-semibold text-gray-400 uppercase tracking-wide mt-0.5">Door</span>
