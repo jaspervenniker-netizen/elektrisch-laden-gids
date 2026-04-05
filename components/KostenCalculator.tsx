@@ -123,15 +123,12 @@ export default function KostenCalculator() {
         track('Calculator_Used', { 
           besparing: Math.round(annualSavings),
           auto_model: selectedCar,
-          rijprofiel: profile,
-          laad_type: activeScenario,
-          kilometers: kms
         });
       }
     }, 3000); 
 
     return () => clearTimeout(timer);
-  }, [annualSavings, selectedCar, profile, activeScenario, kms]);
+  }, [annualSavings, selectedCar]);
   // --- ADDED TRACKING END ---
   
   return (
